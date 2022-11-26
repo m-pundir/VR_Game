@@ -28,7 +28,7 @@ public class ObjectManipulator : MonoBehaviour
     public Image objectInfoBG;
 
     // align these in front of the user's view when starting
-    //public GameObject demoObjects;
+    public GameObject demoObjects;
 
     // only used in this script for fading in from black
     public OVRPassthroughLayer passthrough;
@@ -117,7 +117,7 @@ public class ObjectManipulator : MonoBehaviour
     // wait for systems to get situated, then spawn the objects in front of them
     IEnumerator StartDemo()
     {
-        //demoObjects.SetActive(false);
+        demoObjects.SetActive(false);
         // fade from black
         float timer = 0.0f;
         float fadeTime = 1.0f;
@@ -133,10 +133,10 @@ public class ObjectManipulator : MonoBehaviour
             yield return null;
         }
         //yield return new WaitForSeconds(1.0f);
-        //demoObjects.SetActive(true);
+        demoObjects.SetActive(true);
         Vector3 objFwd = new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z).normalized;
-        //demoObjects.transform.position = Camera.main.transform.position + objFwd;
-        //demoObjects.transform.rotation = Quaternion.LookRotation(objFwd);
+        demoObjects.transform.position = Camera.main.transform.position + objFwd;
+        demoObjects.transform.rotation = Quaternion.LookRotation(objFwd);
     }
 
     void FindHoverObject(Vector3 controllerPos, Quaternion controllerRot)
