@@ -19,5 +19,6 @@ public class InGameMenu : UIManager
     void Update()
     {
         gameMenu.transform.position = centerEyeAnchor.transform.position + menuOffSetFromCamera;
+        //gameMenu.transform.rotation = centerEyeAnchor.transform.rotation;
     }
 }

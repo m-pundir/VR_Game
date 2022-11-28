@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Quest_BrushController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Quest_BrushController : MonoBehaviour
     private GameObject collidingObject;
     private GameObject objectInHand;
 
+    //public AudioSource paintButton;
+    //public bool playSound;
     //public GameObject brushPoint;
     private void Awake()
     {
@@ -55,11 +58,12 @@ public class Quest_BrushController : MonoBehaviour
             rayRenderer.enabled = true;
             rayRenderer.SetPosition(0, this.transform.position);
             rayRenderer.SetPosition(1, hit.point);
+
+
         }
         else
         {
             rayRenderer.enabled = false;
-
             if (m_Trigger.GetTriggerValue() > 0.1f)
             {
                 if (collidingObject)

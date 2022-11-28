@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class BrushManager : MonoBehaviour
 {
     [Range(2, 30)]
@@ -35,7 +34,6 @@ public class BrushManager : MonoBehaviour
 
     private int itemCount = 0;
     private int drawingCount = 0;
-
     private void Awake()
     {
         brush_stack = new Stack<BrushMesh>();
@@ -66,9 +64,14 @@ public class BrushManager : MonoBehaviour
             current_brush.AddMesh(vDrawingPosition, brushRadius);
             SetBoxColliderPivot(vDrawingPosition);
             brush_PrePose = vDrawingPosition;
+            
         }
         else
+        {
             EndBrush();
+            
+        }
+            
     }
 
     private void InitBrush(Vector3 initPosition, float brushRadius)
