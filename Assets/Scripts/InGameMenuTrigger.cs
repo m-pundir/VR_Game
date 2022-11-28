@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class InGameMenuTrigger : MonoBehaviour
 {
     public GameObject gameMenu;
+    public bool gameIsPaused = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,9 +16,29 @@ public class InGameMenuTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(OVRInput.Get(OVRInput.Button.One))
+        if(OVRInput.GetDown(OVRInput.Button.One))
         {
-            gameMenu.SetActive(true);
+            if(gameIsPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+            
         }
+    }
+
+    void Pause()
+    {
+        gameMenu.SetActive(true);
+        gameIsPaused = true;
+    }
+
+    void Resume()
+    {
+        gameMenu.SetActive(false);
+        gameIsPaused = false;
     }
 }
