@@ -417,6 +417,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameMenu: {fileID: 326692183}
+  gameIsPaused: 0
+  leftHand: {fileID: 0}
+  rightHand: {fileID: 0}
 --- !u!4 &272409707
 Transform:
   m_ObjectHideFlags: 0
@@ -460,6 +463,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameMenu: {fileID: 326692183}
+  gameIsPaused: 0
+  leftHand: {fileID: 1989277347}
+  rightHand: {fileID: 1989277346}
 --- !u!1001 &289087594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2252,6 +2258,18 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 85ba46bcbfec4e14fad0f64900d0f76a, type: 3}
+--- !u!1 &1989277346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8103592210042919115, guid: 85ba46bcbfec4e14fad0f64900d0f76a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1989277345}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1989277347 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8103592210042916447, guid: 85ba46bcbfec4e14fad0f64900d0f76a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1989277345}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2014568611
 PrefabInstance:
   m_ObjectHideFlags: 0

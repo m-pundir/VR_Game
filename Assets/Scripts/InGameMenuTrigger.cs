@@ -7,6 +7,14 @@ public class InGameMenuTrigger : MonoBehaviour
 {
     public GameObject gameMenu;
     public bool gameIsPaused = false;
+
+    // left hand colour picker
+    [SerializeField] GameObject leftHand;
+
+    // right hand brush contoller
+    [SerializeField] GameObject rightHand;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,11 +42,19 @@ public class InGameMenuTrigger : MonoBehaviour
     {
         gameMenu.SetActive(true);
         gameIsPaused = true;
+
+        // hide the colour picker Ui
+        leftHand.SetActive(false);
+        rightHand.GetComponent<Quest_BrushController>().enabled = false;
+
     }
 
     void Resume()
     {
         gameMenu.SetActive(false);
         gameIsPaused = false;
+
+        leftHand.SetActive(true);
+        rightHand.GetComponent<Quest_BrushController>().enabled = true;
     }
 }
