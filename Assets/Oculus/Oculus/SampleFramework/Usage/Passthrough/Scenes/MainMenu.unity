@@ -240,7 +240,7 @@ PrefabInstance:
     - target: {fileID: 8103592210048964579, guid: 85ba46bcbfec4e14fad0f64900d0f76a,
         type: 3}
       propertyPath: isInsightPassthroughEnabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8103592211372338918, guid: 85ba46bcbfec4e14fad0f64900d0f76a,
         type: 3}
