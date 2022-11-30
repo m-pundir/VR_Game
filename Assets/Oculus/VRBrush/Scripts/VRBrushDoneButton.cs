@@ -76,26 +76,26 @@ public class VRBrushDoneButton : MonoBehaviour
     private IEnumerator UpdateMessageWithDelay()
     {
         yield return new WaitForSeconds(0.25f);
-        if (m_BrushManager.itemCount == 0)
+        if (m_BrushManager.itemCount == 1)
         {
             VRGameManager.instance.Team1Drawings.Add(GameObject.Find("BrushObject_0"));
             VRGameManager.instance.Team1Drawings[0].transform.SetParent(ONE);
             VRGameManager.instance.Team1Drawings[0].transform.localPosition = new Vector3(0, 0, 0);
         }
-        if (m_BrushManager.itemCount == 1)
+        if (m_BrushManager.itemCount == 2)
         {
             VRGameManager.instance.Team1Drawings.Add(GameObject.Find("BrushObject_1"));
             VRGameManager.instance.Team1Drawings[1].transform.SetParent(TWO);
             VRGameManager.instance.Team1Drawings[1].transform.localPosition = new Vector3(0, 0, 0);
         }
-        if (m_BrushManager.itemCount == 2)
+        if (m_BrushManager.itemCount == 3)
         {
             VRGameManager.instance.Team2Drawings.Add(GameObject.Find("BrushObject_2"));
             VRGameManager.instance.Team2Drawings[0].transform.SetParent(THREE);
             VRGameManager.instance.Team2Drawings[0].transform.localPosition = new Vector3(0, 0, 0);
             VRGameManager.instance.SetGameState(GameState.TeamTwoDrawing);
         }
-        if (m_BrushManager.itemCount == 3)
+        if (m_BrushManager.itemCount == 4)
         {
             VRGameManager.instance.Team2Drawings.Add(GameObject.Find("BrushObject_3"));
             VRGameManager.instance.Team2Drawings[1].transform.SetParent(FOUR);
@@ -105,7 +105,7 @@ public class VRBrushDoneButton : MonoBehaviour
         VRUIManager.instance.UpdateMessage();
         m_BrushManager.FinalStep();
 
-        if (m_BrushManager.itemCount > 3)
+        if (m_BrushManager.itemCount >4)
         {
             VRGameManager.instance.SetGameState(GameState.Results);
             SceneManager.LoadScene(VRScenes.Results.ToString());
