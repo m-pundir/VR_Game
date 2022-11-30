@@ -22,6 +22,9 @@ public class VRColorPicker : MonoBehaviour
     private VRControllerTriggerValue m_ControllerTrigger;
     private BrushManager m_BrushManager;
 
+    public TMPro.TextMeshProUGUI informationOne;
+    public TMPro.TextMeshProUGUI informationTwo;
+
     private void Awake()
     {
         m_ControllerTrigger = VRController.GetComponent<VRControllerTriggerValue>();

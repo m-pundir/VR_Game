@@ -42,6 +42,8 @@ public class Quest_BrushController : MonoBehaviour
         m_BrushManager = this.GetComponent<BrushManager>();
     }
 
+    
+
     // Update is called once per frame
     void Update()
     {

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class BrushManager : MonoBehaviour
@@ -23,7 +24,7 @@ public class BrushManager : MonoBehaviour
     public Material DefaultBrushMaterial;      //brush material
     public Material BloomBrushMaterial;
 
-    private GameObject brush_Parent = null;
+    [SerializeField]private GameObject brush_Parent = null;
     private const string parent_name = "BrushObject";     //parent name
     private const string stack_name = "BrushStack";
 
@@ -32,7 +33,7 @@ public class BrushManager : MonoBehaviour
     private Stack<Vector3> vMinBoxColliderPosition;
     private Stack<Vector3> vMaxBoxColliderPosition;
 
-    private int itemCount = 0;
+    public int itemCount = 0;
     private int drawingCount = 0;
     private void Awake()
     {
@@ -234,7 +235,7 @@ public class BrushManager : MonoBehaviour
     {
         if (brush_Parent)
         {
-            brush_Parent.GetComponent<Rigidbody>().useGravity = true;
+            //brush_Parent.GetComponent<Rigidbody>().useGravity = true;
 
             float sizeX = Mathf.Abs(maxBoxColliderPosition.x - minBoxColliderPosition.x);
             float sizeY = Mathf.Abs(maxBoxColliderPosition.y - minBoxColliderPosition.y);
@@ -252,12 +253,12 @@ public class BrushManager : MonoBehaviour
         }
         
         brush_Parent = new GameObject(parent_name + "_" + itemCount);
-        brush_Parent.AddComponent<BoxCollider>();
-        brush_Parent.GetComponent<BoxCollider>().isTrigger = true;
+        //brush_Parent.AddComponent<BoxCollider>();
+        //brush_Parent.GetComponent<BoxCollider>().isTrigger = false;
 
 
-        Rigidbody bp = brush_Parent.AddComponent<Rigidbody>();
-        bp.useGravity = false;
+        //Rigidbody bp = brush_Parent.AddComponent<Rigidbody>();
+        //bp.useGravity = false;
 
         minBoxColliderPosition = Vector3.zero;
         maxBoxColliderPosition = Vector3.zero;
@@ -272,12 +273,12 @@ public class BrushManager : MonoBehaviour
     {
         if (brush_Parent)
         {
-            brush_Parent.GetComponent<Rigidbody>().useGravity = m_UseGravity;
+            //brush_Parent.GetComponent<Rigidbody>().useGravity = m_UseGravity;
 
             BrushMeshMerge();
             brush_Parent.AddComponent<MeshCollider>();
             brush_Parent.GetComponent<MeshCollider>().convex = true;
-            brush_Parent.GetComponent<MeshCollider>().isTrigger = true;
+            brush_Parent.GetComponent<MeshCollider>().isTrigger = false;
 
             //brush_Parent.AddComponent<PickUpItem>();
             //brush_Parent.GetComponent<PickUpItem>().gravitySettingValue = m_UseGravity;
@@ -297,11 +298,14 @@ public class BrushManager : MonoBehaviour
         */
     }
 
+    public static event Action<GameObject> onBrushSaved;
+    public GameObject lastBrushParent;
     public void CreateBrushStackParent_C()
     {
         if (brush_Parent)
         {
-            brush_Parent.GetComponent<Rigidbody>().useGravity = m_UseGravity;
+            lastBrushParent = brush_Parent;
+            //brush_Parent.GetComponent<Rigidbody>().useGravity = false;
             GameObject boxColliderObj = new GameObject("BoxColliders");
             boxColliderObj.transform.SetParent(brush_Parent.transform);
 
@@ -335,12 +339,22 @@ public class BrushManager : MonoBehaviour
 
             vMinBoxColliderPosition.Clear();
             vMaxBoxColliderPosition.Clear();
-        }
 
+        }
+        if (firstTime)
+        {
+            firstTime = false;
+            FinalStep();
+        }
+              
+    }
+    bool firstTime = true;
+    public void FinalStep()
+    {
         brush_Parent = new GameObject(parent_name + "_" + itemCount);
 
-        Rigidbody bp = brush_Parent.AddComponent<Rigidbody>();
-        bp.useGravity = false;
+        //Rigidbody bp = brush_Parent.AddComponent<Rigidbody>();
+        //bp.useGravity = false;
 
         minBoxColliderPosition = Vector3.zero;
         maxBoxColliderPosition = Vector3.zero;

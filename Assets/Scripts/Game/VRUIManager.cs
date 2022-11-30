@@ -18,12 +18,47 @@ public class VRUIManager : MonoBehaviour
     public GameObject[] canvas;
     public VRScenes currentScene;
 
+    private VRColorPicker vRColorPicker;
+
+    public static VRUIManager instance = null;
+
+    private void Awake()
+    {
+        if (instance == null) { instance = this; } else
+        {
+            Destroy(gameObject);
+        }
+
+    }
+
     private void Start()
     {
         NextSceneButton.GetComponent<VRUIButton>().SetCallBack(VRGameManager.instance.LoadScene);
         QuitButton.GetComponent<VRUIButton>().SetCallBack(VRGameManager.instance.QuitGame);
 
         sceneName.text = SceneManager.GetActiveScene().name;
+    }
+
+    public void UpdateMessage()
+    {
+        if (vRColorPicker == null)
+        {
+            vRColorPicker = FindObjectOfType<VRColorPicker>();
+        }
+
+        if (VRGameManager.instance.GetGameState().ToString() == GameState.TeamOneDrawing.ToString()) {
+            vRColorPicker.informationOne.text = "Team 1";
+            vRColorPicker.informationTwo.text = "Pick a color and hand over the controller to your team mate to start drawing. Once done, select 'save' button from below"
+                + "\n" + "Saved Drawings : " + VRGameManager.instance.Team1Drawings.Count
+                + "/2.";
+        }
+        if (VRGameManager.instance.GetGameState().ToString() == GameState.TeamTwoDrawing.ToString())
+        {
+            vRColorPicker.informationOne.text = "Team 2";
+            vRColorPicker.informationTwo.text = "Pick a color and hand over the controller to your team mate to start drawing. Once done, select 'save' button from below"
+                + "\n" + "Saved Drawings : " + VRGameManager.instance.Team2Drawings.Count
+                + "/2.";
+        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -75,4 +110,5 @@ public class VRUIManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+    
 }

@@ -178,6 +178,8 @@ MonoBehaviour:
   currentGameState: 0
   currentScene: 0
   nextScene: 0
+  Team1Drawings: []
+  Team2Drawings: []
 --- !u!4 &31211274
 Transform:
   m_ObjectHideFlags: 0

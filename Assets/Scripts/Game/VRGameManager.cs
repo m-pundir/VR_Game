@@ -19,6 +19,7 @@ public class VRGameManager : MonoBehaviour
     public List<GameObject> Team1Drawings = new List<GameObject>();
     public List<GameObject> Team2Drawings = new List<GameObject>();
 
+    private BrushManager brushManager;
 
     private void Awake()
     {
@@ -35,12 +36,14 @@ public class VRGameManager : MonoBehaviour
 
     private void Start()
     {
-        onGameStateChanged += VRGameManager_onGameStateChanged;
+        Team1Drawings = new List<GameObject>();
+        Team2Drawings = new List<GameObject>();
+        //onGameStateChanged += VRGameManager_onGameStateChanged;
     }
 
     private void VRGameManager_onGameStateChanged(GameState obj)
     {
-        
+        VRUIManager.instance.UpdateMessage();
     }
 
     public GameState GetGameState()
@@ -51,7 +54,8 @@ public class VRGameManager : MonoBehaviour
     public void SetGameState(GameState gameState)
     {
         currentGameState = gameState;
-        onGameStateChanged?.Invoke(currentGameState);
+        VRUIManager.instance.UpdateMessage();
+        //onGameStateChanged?.Invoke(currentGameState);
     }
 
 
@@ -74,7 +78,7 @@ public class VRGameManager : MonoBehaviour
         {
             currentScene = VRScenes.Instructions;
             nextScene = VRScenes.GamePlay;
-
+            
             VRGameManager.instance.SetGameState(GameState.ShowInstructions);
 
         }
@@ -82,6 +86,9 @@ public class VRGameManager : MonoBehaviour
         {
             currentScene = VRScenes.GamePlay;
             nextScene = VRScenes.Results;
+            
+            //On entering the scene, its always team 1 chance first
+            SetGameState(GameState.TeamOneDrawing);
         }
         if (scene.name == VRScenes.Results.ToString())
         {
@@ -90,6 +97,20 @@ public class VRGameManager : MonoBehaviour
         }
 
         onSceneChanged?.Invoke(currentScene);
+    }
+
+    public void BrushManager_onBrushSaved(GameObject obj)
+    {
+        if (VRGameManager.instance.GetGameState() == GameState.TeamOneDrawing)
+        {
+            Team1Drawings.Add(obj);
+        }
+        if (VRGameManager.instance.GetGameState() == GameState.TeamTwoDrawing)
+        {
+            Team2Drawings.Add(obj);
+        }
+        obj.SetActive(false);
+        VRUIManager.instance.UpdateMessage();
     }
 
     void OnEnable()
