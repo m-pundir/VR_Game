@@ -4,27 +4,27 @@ using UnityEngine;
 public class BrushManager : MonoBehaviour
 {
     [Range(2, 30)]
-    public int BrushAngleNum = 20;      //브러쉬 둥근 정도(클수록 둥글다 + 느려짐)
+    public int BrushAngleNum = 20;      //Brush roundness (larger the rounder + slower)
     [Range(0.001f, 0.05f)]
-    private float m_BrushRadius = 0.01f;   //브러쉬 지름
+    private float m_BrushRadius = 0.01f;   //brush diameter
     private float m_BrushRadiusMin = 0.001f;
     private float m_BrushRadiusMax = 0.05f;
-    public bool CanDrawing = false;   //그리기 가능 여부
+    public bool CanDrawing = false;   //Drawability
     public bool ColorPickerUIUsing = false;
-    public bool m_UseGravity = true;
-    public bool m_useBloom = true;
+    public bool m_UseGravity = false;
+    public bool m_useBloom = false;
 
     private Vector3 brush_PrePose;
     private float brush_MinDistance = 0.005f;
 
-    private BrushMesh current_brush = null;              //현재 브러쉬
-    private Stack<BrushMesh> brush_stack;  //브러쉬 그린 내역 저장
-    private Stack<BrushMesh> Undo_stack; //되돌리기 스택
-    public Material DefaultBrushMaterial;      //브러쉬 메터리얼
+    private BrushMesh current_brush = null;              //current brush
+    private Stack<BrushMesh> brush_stack;  //Save brush drawing history
+    private Stack<BrushMesh> Undo_stack; //revert stack
+    public Material DefaultBrushMaterial;      //brush material
     public Material BloomBrushMaterial;
 
     private GameObject brush_Parent = null;
-    private const string parent_name = "BrushObject";     //부모 이름
+    private const string parent_name = "BrushObject";     //parent name
     private const string stack_name = "BrushStack";
 
     private Vector3 minBoxColliderPosition;
@@ -49,13 +49,13 @@ public class BrushManager : MonoBehaviour
 
     public void DrawingBrush(Vector3 vDrawingPosition, float brushRadius)
     {
-        //브러쉬 없으면 초기화
+        //Reset without brush
         InitBrush(vDrawingPosition, brushRadius);
 
-        //그리기
+        //drawing
         if (CanDrawing)
         {
-            //박스 콜리더 계산을 위한 드로잉 카운트
+            //Drawing counts for box collider calculations
             float dis = Vector3.Distance(vDrawingPosition, brush_PrePose);
             if (dis < brush_MinDistance)
                 return;
@@ -91,14 +91,14 @@ public class BrushManager : MonoBehaviour
 
         if (brushMaterial == null) return;
 
-        //진동!
+        //vibration!
         //Debug.Log("InitBrush");
         //브러쉬 생성
         GameObject newBrushObj = new GameObject(stack_name + brush_stack.Count);
-        //부모 설정
+        //set parent
         newBrushObj.transform.SetParent(brush_Parent.transform);
 
-        //컴포넌트 추가
+        //Add component
         newBrushObj.AddComponent<BrushMesh>();
         current_brush = newBrushObj.GetComponent<BrushMesh>();
         current_brush.CreateBrushMesh(
@@ -109,7 +109,7 @@ public class BrushManager : MonoBehaviour
             brushRadius);
 
 
-        //첫번째 브러쉬 위치로 브러쉬 최소값과 최대값 위치 입력
+        //Enter the minimum and maximum brush position as the first brush position
         if (minBoxColliderPosition == Vector3.zero && maxBoxColliderPosition == Vector3.zero)
         {
             minBoxColliderPosition = initPosition;
@@ -120,7 +120,7 @@ public class BrushManager : MonoBehaviour
             SetBoxColliderPivot(initPosition);
         }
 
-        //스택에 넣기
+        //put on stack
         brush_stack.Push(current_brush);
         CanDrawing = true;
         brush_PrePose = initPosition;

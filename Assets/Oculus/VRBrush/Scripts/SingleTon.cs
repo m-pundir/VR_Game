@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// 싱글톤 : 씬에서 하나의 객체로만 사용될경우 이클래쓰를 상속받아서 사용
+// Singleton: Inherit and use this class when used as only one object in the scene
 public abstract class SingleTon<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static GameObject obj;

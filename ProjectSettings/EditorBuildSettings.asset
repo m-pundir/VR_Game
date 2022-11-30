@@ -6,11 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Oculus/Oculus/SampleFramework/Usage/Passthrough/Scenes/MainMenu.unity
-    guid: da7b9e1ab31cc2148839d9027408b492
+    path: Assets/Scenes/VRMainMenu.unity
+    guid: 5a6012ae01ebb4b4dae5ca3e428cd361
   - enabled: 1
-    path: Assets/Oculus/Oculus/SampleFramework/Usage/Passthrough/Scenes/AugmentedObjects.unity
-    guid: 9afeada2bbd240b4981cfb6abb525418
+    path: Assets/Scenes/Instructions.unity
+    guid: 8def176c00c4145dc8e6e2d47add3cd2
+  - enabled: 1
+    path: Assets/Scenes/GamePlay.unity
+    guid: 7e0ce0a31d05b45469789c3914ed9c85
+  - enabled: 1
+    path: Assets/Scenes/Results.unity
+    guid: d52d522f7ba4e4c2c88cbce1fb78ccf8
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}

@@ -65,6 +65,16 @@ public class LaserPointer : OVRCursor
     private bool _hitTarget;
     private LineRenderer lineRenderer;
 
+    public Vector3 GetStartPoint()
+    {
+        return _startPoint;
+    }
+
+    public Vector3 GetForwardPoint()
+    {
+        return _forward;
+    }
+
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();

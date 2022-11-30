@@ -9,7 +9,7 @@ public class Quest_BrushController : MonoBehaviour
     private BrushManager m_BrushManager;
     private LineRenderer rayRenderer;
 
-    public Transform tfBrushPoint; //브러쉬 드로잉 포인트 위치
+    public Transform tfBrushPoint; //brush drawing point location
 
     private GameObject collidingObject;
     private GameObject objectInHand;
