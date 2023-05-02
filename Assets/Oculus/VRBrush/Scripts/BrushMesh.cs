@@ -9,7 +9,7 @@ public class BrushMesh : MonoBehaviour
     private Mesh mesh = new Mesh();
     private GameObject mesh_obj;
 
-    //매쉬 속성
+    //
     private List<Vector3> vertices = new List<Vector3>();
     private List<int> tri_indexes = new List<int>();
     private List<Vector2> uvs = new List<Vector2>();

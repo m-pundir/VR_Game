@@ -943,12 +943,12 @@ MonoBehaviour:
     gameplay : \n\na)First member will wear the oculus headset\nb)Second member will
     make body poses\nc)Third member will draw using the VR controller brush\nAll
     this while all team members will coordinate and communicate with each other.\n\nOnce
-    one drawing is completed, select 'save' to start another drawing. Team 1 will
-    draw 2 drawings like this. \n\nAfter this; game will prompt to transfer the headset
-    and controls to 'Team 2'.\nTeam 2's member who has the headset will be able to
-    see what 'Team 1' has drawn and will try to replicate it by communicating to
-    his/her team members.\n\nOnce saved. Results will show on the next screen for
-    comparison. \nRinse and repeat new gameplay to switch turns."
+    one drawing is completed, select 'save' to save your drawing. \n\nAfter this;
+    game will prompt to transfer the headset and controls to 'Team 2'.\nTeam 2's
+    member who has the headset will be able to see what 'Team 1' has drawn and will
+    try to replicate it by communicating to his/her team members.\n\nOnce saved.
+    Results will show on the next screen for comparison. \nRinse and repeat new gameplay
+    to switch turns."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

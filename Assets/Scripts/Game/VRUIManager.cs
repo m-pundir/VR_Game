@@ -48,16 +48,12 @@ public class VRUIManager : MonoBehaviour
 
         if (VRGameManager.instance.GetGameState().ToString() == GameState.TeamOneDrawing.ToString()) {
             vRColorPicker.informationOne.text = "Team 1";
-            vRColorPicker.informationTwo.text = "Pick a color and hand over the controller to your team mate to start drawing. Once done, select 'save' button from below"
-                + "\n" + "Saved Drawings : " + VRGameManager.instance.Team1Drawings.Count
-                + "/2.";
+            vRColorPicker.informationTwo.text = "Pick a color and hand over the controller to your team mate to start drawing. Once done, select 'save' button from below";            
         }
         if (VRGameManager.instance.GetGameState().ToString() == GameState.TeamTwoDrawing.ToString())
         {
             vRColorPicker.informationOne.text = "Team 2";
-            vRColorPicker.informationTwo.text = "Pick a color and hand over the controller to your team mate to start drawing. Once done, select 'save' button from below"
-                + "\n" + "Saved Drawings : " + VRGameManager.instance.Team2Drawings.Count
-                + "/2.";
+            vRColorPicker.informationTwo.text = "Pick a color and hand over the controller to your team mate to start drawing. Once done, select 'save' button from below";            
         }
     }
 
